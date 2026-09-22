@@ -57,12 +57,12 @@ function App() {
             <ul className="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
               <li>
                 <a className="nav-link" href="#">
-                  <img src="images/user.svg" />
+                  <img src="/assets/images/user.svg" />
                 </a>
               </li>
               <li>
                 <a className="nav-link" href="cart.html">
-                  <img src="images/cart.svg" />
+                  <img src="/assets/images/cart.svg" />
                 </a>
               </li>
             </ul>
@@ -95,7 +95,7 @@ function App() {
             </div>
             <div className="col-lg-7">
               <div className="hero-img-wrap">
-                <img src="images/couch.png" className="img-fluid" />
+                <img src="/assets/images/couch.png" className="img-fluid" />
               </div>
             </div>
           </div>
@@ -126,13 +126,13 @@ function App() {
             <div className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
               <a className="product-item" href="cart.html">
                 <img
-                  src="images/product-1.png"
+                  src="/assets/images/product-1.png"
                   className="img-fluid product-thumbnail"
                 />
                 <h3 className="product-title">Nordic Chair</h3>
                 <strong className="product-price">$50.00</strong>
                 <span className="icon-cross">
-                  <img src="images/cross.svg" className="img-fluid" />
+                  <img src="/assets/images/cross.svg" className="img-fluid" />
                 </span>
               </a>
             </div>
@@ -141,13 +141,13 @@ function App() {
             <div className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
               <a className="product-item" href="cart.html">
                 <img
-                  src="images/product-2.png"
+                  src="/assets/images/product-2.png"
                   className="img-fluid product-thumbnail"
                 />
                 <h3 className="product-title">Kruzo Aero Chair</h3>
                 <strong className="product-price">$78.00</strong>
                 <span className="icon-cross">
-                  <img src="images/cross.svg" className="img-fluid" />
+                  <img src="/assets/images/cross.svg" className="img-fluid" />
                 </span>
               </a>
             </div>
@@ -156,13 +156,13 @@ function App() {
             <div className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
               <a className="product-item" href="cart.html">
                 <img
-                  src="images/product-3.png"
+                  src="/assets/images/product-3.png"
                   className="img-fluid product-thumbnail"
                 />
                 <h3 className="product-title">Ergonomic Chair</h3>
                 <strong className="product-price">$43.00</strong>
                 <span className="icon-cross">
-                  <img src="images/cross.svg" className="img-fluid" />
+                  <img src="/assets/images/cross.svg" className="img-fluid" />
                 </span>
               </a>
             </div>
@@ -186,7 +186,7 @@ function App() {
                   <div className="feature">
                     <div className="icon">
                       <img
-                        src="images/truck.svg"
+                        src="/assets/images/truck.svg"
                         alt="Image"
                         className="imf-fluid"
                       />
@@ -201,7 +201,7 @@ function App() {
                 <div className="col-6 col-md-6">
                   <div className="feature">
                     <div className="icon">
-                      <img src="images/bag.svg" alt="Image" className="imf-fluid" />
+                      <img src="/assets/images/bag.svg" alt="Image" className="imf-fluid" />
                     </div>
                     <h3>Easy to Shop</h3>
                     <p>
@@ -214,7 +214,7 @@ function App() {
                   <div className="feature">
                     <div className="icon">
                       <img
-                        src="images/support.svg"
+                        src="/assets/images/support.svg"
                         alt="Image"
                         className="imf-fluid"
                       />
@@ -230,7 +230,7 @@ function App() {
                   <div className="feature">
                     <div className="icon">
                       <img
-                        src="images/return.svg"
+                        src="/assets/images/return.svg"
                         alt="Image"
                         className="imf-fluid"
                       />
@@ -247,7 +247,7 @@ function App() {
             <div className="col-lg-5">
               <div className="img-wrap">
                 <img
-                  src="images/why-choose-us-img.jpg"
+                  src="/assets/images/why-choose-us-img.jpg"
                   alt="Image"
                   className="img-fluid"
                 />
@@ -264,13 +264,13 @@ function App() {
             <div className="col-lg-7 mb-5 mb-lg-0">
               <div className="imgs-grid">
                 <div className="grid grid-1">
-                  <img src="images/img-grid-1.jpg" alt="Untree.co" />
+                  <img src="/assets/images/img-grid-1.jpg" alt="Untree.co" />
                 </div>
                 <div className="grid grid-2">
-                  <img src="images/img-grid-2.jpg" alt="Untree.co" />
+                  <img src="/assets/images/img-grid-2.jpg" alt="Untree.co" />
                 </div>
                 <div className="grid grid-3">
-                  <img src="images/img-grid-3.jpg" alt="Untree.co" />
+                  <img src="/assets/images/img-grid-3.jpg" alt="Untree.co" />
                 </div>
               </div>
             </div>
@@ -308,7 +308,7 @@ function App() {
               <div className="product-item-sm d-flex">
                 <div className="thumbnail">
                   <img
-                    src="images/product-1.png"
+                    src="/assets/images/product-1.png"
                     alt="Image"
                     className="img-fluid"
                   />
@@ -328,7 +328,7 @@ function App() {
               <div className="product-item-sm d-flex">
                 <div className="thumbnail">
                   <img
-                    src="images/product-2.png"
+                    src="/assets/images/product-2.png"
                     alt="Image"
                     className="img-fluid"
                   />
@@ -348,7 +348,7 @@ function App() {
               <div className="product-item-sm d-flex">
                 <div className="thumbnail">
                   <img
-                    src="images/product-3.png"
+                    src="/assets/images/product-3.png"
                     alt="Image"
                     className="img-fluid"
                   />
@@ -406,7 +406,7 @@ function App() {
                           <div className="author-info">
                             <div className="author-pic">
                               <img
-                                src="images/person-1.png"
+                                src="/assets/images/person-1.png"
                                 alt="Maria Jones"
                                 className="img-fluid"
                               />
@@ -439,7 +439,7 @@ function App() {
                           <div className="author-info">
                             <div className="author-pic">
                               <img
-                                src="images/person-1.png"
+                                src="/assets/images/person-1.png"
                                 alt="Maria Jones"
                                 className="img-fluid"
                               />
@@ -472,7 +472,7 @@ function App() {
                           <div className="author-info">
                             <div className="author-pic">
                               <img
-                                src="images/person-1.png"
+                                src="/assets/images/person-1.png"
                                 alt="Maria Jones"
                                 className="img-fluid"
                               />
@@ -511,7 +511,7 @@ function App() {
             <div className="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
               <div className="post-entry">
                 <a href="#" className="post-thumbnail">
-                  <img src="images/post-1.jpg" alt="Image" className="img-fluid" />
+                  <img src="/assets/images/post-1.jpg" alt="Image" className="img-fluid" />
                 </a>
                 <div className="post-content-entry">
                   <h3>
@@ -531,7 +531,7 @@ function App() {
             <div className="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
               <div className="post-entry">
                 <a href="#" className="post-thumbnail">
-                  <img src="images/post-2.jpg" alt="Image" className="img-fluid" />
+                  <img src="/assets/images/post-2.jpg" alt="Image" className="img-fluid" />
                 </a>
                 <div className="post-content-entry">
                   <h3>
@@ -551,7 +551,7 @@ function App() {
             <div className="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
               <div className="post-entry">
                 <a href="#" className="post-thumbnail">
-                  <img src="images/post-3.jpg" alt="Image" className="img-fluid" />
+                  <img src="/assets/images/post-3.jpg" alt="Image" className="img-fluid" />
                 </a>
                 <div className="post-content-entry">
                   <h3>
@@ -576,7 +576,7 @@ function App() {
       <footer className="footer-section">
         <div className="container relative">
           <div className="sofa-img">
-            <img src="images/sofa.png" alt="Image" className="img-fluid" />
+            <img src="/assets/images/sofa.png" alt="Image" className="img-fluid" />
           </div>
           <div className="row">
             <div className="col-lg-8">
@@ -584,7 +584,7 @@ function App() {
                 <h3 className="d-flex align-items-center">
                   <span className="me-1">
                     <img
-                      src="images/envelope-outline.svg"
+                      src="/assets/images/envelope-outline.svg"
                       alt="Image"
                       className="img-fluid"
                     />
