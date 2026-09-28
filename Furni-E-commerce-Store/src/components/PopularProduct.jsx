@@ -8,14 +8,14 @@ export default function PopularProduct() {
                 <div className="thumbnail">
                   <img
                     src="/assets/images/product-1.png"
-                    alt="Image"
+                    alt="Nordic Chair"
                     className="img-fluid"
                   />
                 </div>
                 <div className="pt-3">
                   <h3>Nordic Chair</h3>
                   <p>
-                    Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio{" "}
+                    Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio
                   </p>
                   <p>
                     <a href="#">Read More</a>
@@ -28,14 +28,14 @@ export default function PopularProduct() {
                 <div className="thumbnail">
                   <img
                     src="/assets/images/product-2.png"
-                    alt="Image"
+                    alt="Kruzo Aero Chair"
                     className="img-fluid"
                   />
                 </div>
                 <div className="pt-3">
                   <h3>Kruzo Aero Chair</h3>
                   <p>
-                    Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio{" "}
+                    Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio
                   </p>
                   <p>
                     <a href="#">Read More</a>
@@ -48,14 +48,14 @@ export default function PopularProduct() {
                 <div className="thumbnail">
                   <img
                     src="/assets/images/product-3.png"
-                    alt="Image"
+                    alt="Ergonomic Chair"
                     className="img-fluid"
                   />
                 </div>
                 <div className="pt-3">
                   <h3>Ergonomic Chair</h3>
                   <p>
-                    Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio{" "}
+                    Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio
                   </p>
                   <p>
                     <a href="#">Read More</a>

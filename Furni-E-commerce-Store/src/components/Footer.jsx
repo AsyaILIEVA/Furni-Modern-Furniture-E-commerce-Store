@@ -3,7 +3,7 @@ export default function Footer() {
          <footer className="footer-section">
         <div className="container relative">
           <div className="sofa-img">
-            <img src="/assets/images/sofa.png" alt="Image" className="img-fluid" />
+            <img src="/assets/images/sofa.png" alt="Modern sofa" className="img-fluid" />
           </div>
           <div className="row">
             <div className="col-lg-8">
@@ -146,7 +146,7 @@ export default function Footer() {
                 <p className="mb-2 text-center text-lg-start">
                   Copyright ©. All Rights Reserved. — Designed with love by{" "}
                   <a href="https://untree.co">Untree.co</a> Distributed By{" "}
-                  <a hreff="https://themewagon.com">ThemeWagon</a>{" "}
+                  <a href="https://themewagon.com">ThemeWagon</a>{" "}
                   {/* License information: https://untree.co/license/ */}
                 </p>
               </div>
