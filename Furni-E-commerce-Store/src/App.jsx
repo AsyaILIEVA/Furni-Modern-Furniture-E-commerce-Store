@@ -4,6 +4,7 @@ import Header from "./components/Header"
 import HeroSection from "./components/HeroSection"
 import ProductSection from "./components/ProductSection"
 import Testimonial from "./components/Testimonial"
+import WeHelpSection from "./components/WeHelpSection"
 
 function App() {
   return (
