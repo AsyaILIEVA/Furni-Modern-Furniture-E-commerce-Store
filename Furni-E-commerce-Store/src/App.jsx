@@ -1,35 +1,13 @@
-import BlogSection from "./components/BlogSection"
-import Footer from "./components/Footer"
-import Header from "./components/Header"
-import HeroSection from "./components/HeroSection"
-import ProductSection from "./components/ProductSection"
-import Testimonial from "./components/Testimonial"
-import WeHelpSection from "./components/WeHelpSection"
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
 
-function App() {
+export default function App() {
   return (
-    <div>
-      
+    <>
       <Header />
-
-      <HeroSection />
-
-      <ProductSection />  
-
-      <WeHelpSection />   
-           
-      <WhyChooseSection />
-     
-      <PopularProduct />
-
-      <Testimonial />         
-
-      <BlogSection />
-      
-      <Footer />  
-           
-    </div>
-  )
+      <Home />
+      <Footer />
+    </>
+  );
 }
-
-export default App
