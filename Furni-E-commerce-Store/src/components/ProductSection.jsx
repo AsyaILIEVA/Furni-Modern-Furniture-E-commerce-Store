@@ -1,11 +1,11 @@
 import ProductCard from "./ProductCard";
+import products from "../data/products";
 
 export default function ProductSection() {
   return (
     <div className="product-section">
       <div className="container">
         <div className="row">
-
           <div className="col-md-12 col-lg-3 mb-5 mb-lg-0">
             <h2 className="mb-4 section-title">
               Crafted with excellent material.
@@ -23,24 +23,14 @@ export default function ProductSection() {
             </p>
           </div>
 
-          <ProductCard
-            image="/assets/images/product-1.png"
-            name="Nordic Chair"
-            price={50}
-          />
-
-          <ProductCard
-            image="/assets/images/product-2.png"
-            name="Kruzo Aero Chair"
-            price={78}
-          />
-
-          <ProductCard
-            image="/assets/images/product-3.png"
-            name="Ergonomic Chair"
-            price={43}
-          />
-
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              image={product.image}
+              name={product.name}
+              price={product.price}
+            />
+          ))}
         </div>
       </div>
     </div>
