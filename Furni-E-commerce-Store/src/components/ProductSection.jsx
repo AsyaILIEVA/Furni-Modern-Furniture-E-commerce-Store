@@ -1,7 +1,7 @@
 import ProductCard from "./ProductCard";
 import products from "../data/products";
 
-export default function ProductSection() {
+export default function ProductSection({ addToCart }) {
   return (
     <div className="product-section">
       <div className="container">
@@ -29,7 +29,7 @@ export default function ProductSection() {
               image={product.image}
               name={product.name}
               price={product.price}
-            />
+              onAddToCart={() => addToCart(product)}            />
           ))}
         </div>
       </div>

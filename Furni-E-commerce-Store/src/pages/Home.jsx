@@ -6,11 +6,11 @@ import PopularProduct from "../components/PopularProduct";
 import Testimonial from "../components/Testimonial";
 import BlogSection from "../components/BlogSection";
 
-export default function Home() {
+export default function Home({ addToCart }) {
   return (
     <>
       <HeroSection />
-      <ProductSection />
+      <ProductSection addToCart={addToCart}/>
       <WhyChooseSection />
       <WeHelpSection />
       <PopularProduct />

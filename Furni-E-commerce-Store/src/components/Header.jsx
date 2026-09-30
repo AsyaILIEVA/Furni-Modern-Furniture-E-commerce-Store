@@ -1,4 +1,4 @@
-export default function Header() {
+export default function Header({ cartCount }) {
   return (
     <nav
       className="custom-navbar navbar navbar-expand-md navbar-dark bg-dark"
@@ -76,6 +76,7 @@ export default function Header() {
                   src="/assets/images/cart.svg"
                   alt="Shopping cart"
                 />
+                <span className="ms-1">{cartCount}</span>
               </a>
             </li>
           </ul>
