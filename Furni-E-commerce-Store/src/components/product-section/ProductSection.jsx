@@ -1,5 +1,5 @@
-import ProductCard from "./ProductCard";
-import products from "../data/products";
+import ProductCard from "../product-card/ProductCard";
+import products from "../../data/products";
 
 export default function ProductSection({ addToCart }) {
   return (
