@@ -1,20 +1,41 @@
-import { useState } from "react";
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
-import Home from "./pages/home/Home";
+// import { useState } from "react";
+// import Header from "./components/header/Header";
+// import Footer from "./components/footer/Footer";
+// import Home from "./pages/home/Home";
+
+// export default function App() {
+//   const [cart, setCart] = useState([]);
+
+//   function addToCart(product) {
+//     setCart((previousCart) => [...previousCart, product]);
+//   }
+
+//   return (
+//     <>
+//       <Header cartCount={cart.length} />
+//       <Home addToCart={addToCart} />
+//       <Footer />
+//     </>
+//   );
+// }
+
+import { useEffect } from "react";
+import { supabase } from "./lib/supabase";
 
 export default function App() {
-  const [cart, setCart] = useState([]);
+  useEffect(() => {
+    async function testSupabase() {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*");
 
-  function addToCart(product) {
-    setCart((previousCart) => [...previousCart, product]);
-  }
+      console.log("Products:", data);
+      console.log("Error:", error?.message);
+    console.log("Error details:", error);
+    }
 
-  return (
-    <>
-      <Header cartCount={cart.length} />
-      <Home addToCart={addToCart} />
-      <Footer />
-    </>
-  );
+    testSupabase();
+  }, []);
+
+  return <h1>Supabase Test</h1>;
 }
