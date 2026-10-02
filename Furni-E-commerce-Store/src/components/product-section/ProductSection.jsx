@@ -1,5 +1,4 @@
-import ProductCard from "../product-card/ProductCard";
-import products from "../../data/products";
+import ProductList from "../product-list/ProductList";
 
 export default function ProductSection({ addToCart }) {
   return (
@@ -23,14 +22,9 @@ export default function ProductSection({ addToCart }) {
             </p>
           </div>
 
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              image={product.image}
-              name={product.name}
-              price={product.price}
-              onAddToCart={() => addToCart(product)}            />
-          ))}
+          <div className="col-md-12 col-lg-9">
+            <ProductList addToCart={addToCart} />
+          </div>
         </div>
       </div>
     </div>

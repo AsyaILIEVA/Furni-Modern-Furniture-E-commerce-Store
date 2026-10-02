@@ -1,41 +1,35 @@
-export default function ProductCard({
-    image, 
-    name, 
-    price,
-    onAddToCart
- }) {
-    const product = { image, name, price };
-
+export default function ProductCard({ product, onAddToCart }) {
+  
   return (
     <div className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-      <a className="product-item" href="/cart">
+      <div className="product-item">
         <img
-          src={image}
+          src={product.imageUrl}
           className="img-fluid product-thumbnail"
-          alt={name}
+          alt={product.name}
         />
 
-        <h3 className="product-title">{name}</h3>
+        <h3 className="product-title">
+          {product.name}
+        </h3>
 
         <strong className="product-price">
-          ${price.toFixed(2)}
+          ${Number(product.price).toFixed(2)}
         </strong>
 
         <button
-          className="btn btn-primary mt-3"
-          onClick={() => onAddToCart(product)}
+          type="button"
+          className="icon-cross"
+          onClick={onAddToCart}
+          aria-label={`Add ${product.name} to cart`}
         >
-          Add to Cart
-        </button>
-
-        <span className="icon-cross">
           <img
             src="/assets/images/cross.svg"
             className="img-fluid"
             alt=""
           />
-        </span>
-      </a>
+        </button>
+      </div>
     </div>
   );
 }

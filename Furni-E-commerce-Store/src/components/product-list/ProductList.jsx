@@ -1,34 +1,36 @@
-import { useState } from "react";
-import products from "../../data/products";
+import { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabase";
 import ProductCard from "../product-card/ProductCard";
 
-export default function ProductList() {
-  const [search, setSearch] = useState("");
+export default function ProductList({ addToCart }) {
+  const [products, setProducts] = useState([]);
 
-  const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(search.toLowerCase())
-  );
+  useEffect(() => {
+    async function getProducts() {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*");
+
+      if (error) {
+        console.error("Error fetching products:", error);
+        return;
+      }
+
+      setProducts(data);
+    }
+
+    getProducts();
+  }, []);
 
   return (
-    <div>
-      <input
-        type="text"
-        className="form-control mb-4"
-        placeholder="Search products..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-
-      <div className="row">
-        {filteredProducts.map((product) => (
-          <ProductCard
-            key={product.id}
-            image={product.image}
-            name={product.name}
-            price={product.price}
-          />
-        ))}
-      </div>
+    <div className="row">
+      {products.map((product) => (
+        <ProductCard
+          key={product.id}
+          product={product}
+          onAddToCart={() => addToCart(product)}
+        />
+      ))}
     </div>
   );
 }
