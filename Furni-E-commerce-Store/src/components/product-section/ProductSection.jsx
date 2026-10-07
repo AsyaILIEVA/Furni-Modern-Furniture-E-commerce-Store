@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ProductList from "../product-list/ProductList";
 
 export default function ProductSection({ addToCart }) {
@@ -16,9 +17,9 @@ export default function ProductSection({ addToCart }) {
             </p>
 
             <p>
-              <a href="/shop" className="btn">
+              <Link to="/shop" className="btn">
                 Explore
-              </a>
+              </Link>
             </p>
           </div>
 

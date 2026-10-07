@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Header({ cartCount }) {
   return (
     <nav
@@ -5,9 +7,9 @@ export default function Header({ cartCount }) {
       aria-label="Furni navigation bar"
     >
       <div className="container">
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           Furni<span>.</span>
-        </a>
+        </Link>
 
         <button
           className="navbar-toggler"
@@ -24,60 +26,60 @@ export default function Header({ cartCount }) {
         <div className="collapse navbar-collapse" id="navbarsFurni">
           <ul className="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
             <li className="nav-item active">
-              <a className="nav-link" href="/">
+              <Link className="nav-link" to="/">
                 Home
-              </a>
+              </Link>
             </li>
 
             <li>
-              <a className="nav-link" href="/shop">
+              <Link className="nav-link" to="/shop">
                 Shop
-              </a>
+              </Link>
             </li>
 
             <li>
-              <a className="nav-link" href="/about">
+              <Link className="nav-link" to="/about">
                 About us
-              </a>
+              </Link>
             </li>
 
             <li>
-              <a className="nav-link" href="/services">
+              <Link className="nav-link" to="/services">
                 Services
-              </a>
+              </Link>
             </li>
 
             <li>
-              <a className="nav-link" href="/blog">
+              <Link className="nav-link" to="/blog">
                 Blog
-              </a>
+              </Link>
             </li>
 
             <li>
-              <a className="nav-link" href="/contact">
+              <Link className="nav-link" to="/contact">
                 Contact us
-              </a>
+              </Link>
             </li>
           </ul>
 
           <ul className="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
             <li>
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="#">
                 <img
                   src="/assets/images/user.svg"
                   alt="User account"
                 />
-              </a>
+              </Link>
             </li>
 
             <li>
-              <a className="nav-link" href="/cart">
+              <Link className="nav-link" to="/cart">
                 <img
                   src="/assets/images/cart.svg"
                   alt="Shopping cart"
                 />
                 <span className="ms-1">{cartCount}</span>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
