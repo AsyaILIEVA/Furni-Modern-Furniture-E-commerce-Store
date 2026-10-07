@@ -16,7 +16,55 @@ export default function App() {
   const [cart, setCart] = useState([]);
 
   function addToCart(product) {
-    setCart((previousCart) => [...previousCart, product]);
+    setCart((previousCart) => {
+      const existingProduct = previousCart.find(
+        (item) => item.id === product.id
+      );
+
+      if (existingProduct) {
+        return previousCart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+
+      return [
+        ...previousCart,
+        {
+          ...product,
+          quantity: 1,
+        },
+      ];
+    });
+  }
+
+  function increaseQuantity(productId) {
+    setCart((previousCart) =>
+      previousCart.map((item) =>
+        item.id === productId
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    );
+  }
+
+  function decreaseQuantity(productId) {
+    setCart((previousCart) =>
+      previousCart
+        .map((item) =>
+          item.id === productId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
+  }
+
+  function removeFromCart(productId) {
+    setCart((previousCart) =>
+      previousCart.filter((item) => item.id !== productId)
+    );
   }
 
   return (
@@ -29,12 +77,27 @@ export default function App() {
           element={<Home addToCart={addToCart} />}
         />
 
-        <Route path="/shop" element={<Shop />} />
+        <Route
+          path="/shop"
+          element={<Shop addToCart={addToCart} />}
+        />
+
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/cart" element={<Cart />} />
+
+        <Route
+          path="/cart"
+          element={
+            <Cart
+              cart={cart}
+              increaseQuantity={increaseQuantity}
+              decreaseQuantity={decreaseQuantity}
+              removeFromCart={removeFromCart}
+            />
+          }
+        />
       </Routes>
 
       <Footer />
