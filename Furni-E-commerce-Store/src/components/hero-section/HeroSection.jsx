@@ -1,28 +1,28 @@
-export default function HeroSection() {
+
+import { Link } from "react-router-dom";
+
+export default function HeroSection({
+  title = "Modern Interior Design Studio",
+  description = "Discover stylish furniture designed to make your home feel comfortable and beautiful.",
+}) {
   return (
     <div className="hero">
       <div className="container">
         <div className="row justify-content-between">
           <div className="col-lg-5">
             <div className="intro-excerpt">
-              <h1>
-                Modern Interior{" "}
-                <span className="d-block">Design Studio</span>
-              </h1>
+              <h1>{title}</h1>
 
-              <p className="mb-4">
-                Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet
-                velit. Aliquam vulputate velit imperdiet dolor tempor tristique.
-              </p>
+              <p className="mb-4">{description}</p>
 
               <p>
-                <a href="/shop" className="btn btn-secondary me-2">
+                <Link to="/shop" className="btn btn-secondary me-2">
                   Shop Now
-                </a>
+                </Link>
 
-                <a href="/shop" className="btn btn-white-outline">
+                <Link to="/about" className="btn btn-white-outline">
                   Explore
-                </a>
+                </Link>
               </p>
             </div>
           </div>
@@ -31,8 +31,8 @@ export default function HeroSection() {
             <div className="hero-img-wrap">
               <img
                 src="/assets/images/couch.png"
-                alt="Modern sofa"
                 className="img-fluid"
+                alt="Modern sofa"
               />
             </div>
           </div>
