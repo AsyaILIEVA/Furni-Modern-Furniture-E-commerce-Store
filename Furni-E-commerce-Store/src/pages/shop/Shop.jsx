@@ -1,4 +1,4 @@
-import ProductSection from "../../components/product-section/ProductSection";
+import ProductList from "../../components/product-list/ProductList";
 
 export default function Shop({ addToCart }) {
   return (
@@ -15,7 +15,13 @@ export default function Shop({ addToCart }) {
         </div>
       </div>
 
-      <ProductSection addToCart={addToCart} />
+      <div className="untree_co-section product-section before-footer-section">
+        <div className="container">
+          <div className="row">
+            <ProductList addToCart={addToCart} />
+          </div>
+        </div>
+      </div>
     </>
   );
 }
