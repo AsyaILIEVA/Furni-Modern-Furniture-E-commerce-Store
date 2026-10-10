@@ -11,6 +11,7 @@ import Services from "./pages/services/Services";
 import Blog from "./pages/blog/Blog";
 import Contact from "./pages/contact/Contact";
 import Cart from "./pages/cart/Cart";
+import ProductDetails from "./pages/product-details/ProductDetails";
 
 export default function App() {
   const [cart, setCart] = useState([]);
@@ -97,6 +98,11 @@ export default function App() {
               removeFromCart={removeFromCart}
             />
           }
+        />
+
+        <Route
+          path="/products/:productId"
+          element={<ProductDetails />}
         />
       </Routes>
 
