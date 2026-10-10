@@ -1,3 +1,4 @@
+
 import ProductList from "../../components/product-list/ProductList";
 
 export default function Shop({ addToCart }) {
@@ -8,7 +9,8 @@ export default function Shop({ addToCart }) {
           <div className="row">
             <div className="col-lg-5">
               <div className="intro-excerpt">
-                <h1>Shop</h1>
+                <h1>Furniture Catalog</h1>
+                <p>Explore our collection of furniture.</p>
               </div>
             </div>
           </div>
