@@ -12,6 +12,9 @@ import Blog from "./pages/blog/Blog";
 import Contact from "./pages/contact/Contact";
 import Cart from "./pages/cart/Cart";
 import ProductDetails from "./pages/product-details/ProductDetails";
+import Register from "./pages/register/Register";
+import Login from "./pages/login/Login";
+
 
 export default function App() {
   const [cart, setCart] = useState([]);
@@ -99,13 +102,14 @@ export default function App() {
             />
           }
         />
-
         <Route
           path="/products/:productId"
           element={<ProductDetails />}
         />
-      </Routes>
-
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>       
+      
       <Footer />
     </BrowserRouter>
   );
