@@ -14,6 +14,7 @@ import Cart from "./pages/cart/Cart";
 import ProductDetails from "./pages/product-details/ProductDetails";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
+import { AuthProvider } from "./context/AuthContext";
 
 
 export default function App() {
@@ -72,6 +73,7 @@ export default function App() {
   }
 
   return (
+    <AuthProvider>
     <BrowserRouter>
       <Header cartCount={cart.length} />
 
@@ -110,7 +112,8 @@ export default function App() {
         <Route path="/login" element={<Login />} />
       </Routes>       
       
-      <Footer />
+      <Footer />      
     </BrowserRouter>
+    </AuthProvider>
   );
 }
