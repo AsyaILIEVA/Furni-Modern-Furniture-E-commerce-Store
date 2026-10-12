@@ -1,6 +1,24 @@
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "../../lib/supabase";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Header({ cartCount }) {
+
+  const { user, loading } = useAuth();
+  const navigate = useNavigate();
+
+  async function handleLogout() {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      console.error("Logout failed:", error.message);
+      return;
+    }
+
+    navigate("/");
+  }
+
   return (
     <nav
       className="custom-navbar navbar navbar-expand-md navbar-dark bg-dark"
@@ -60,6 +78,30 @@ export default function Header({ cartCount }) {
                 Contact us
               </Link>
             </li>
+
+            {!loading && !user && (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">Login</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/register">Register</Link>
+                </li>
+              </>
+            )}
+
+            {!loading && user && (
+              <li className="nav-item">
+                <button
+                type="button"
+                className="nav-link border-0 bg-transparent"
+                style={{ color: "inherit", font: "inherit", cursor: "pointer" }}
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+              </li>
+            )}
           </ul>
 
           <ul className="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
