@@ -15,6 +15,10 @@ import ProductDetails from "./pages/product-details/ProductDetails";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import { AuthProvider } from "./context/AuthContext";
+import {
+  PrivateRoute,
+  GuestRoute,
+} from "./components/route-guards/RouteGuards";
 
 
 export default function App() {
@@ -96,20 +100,37 @@ export default function App() {
         <Route
           path="/cart"
           element={
-            <Cart
-              cart={cart}
-              increaseQuantity={increaseQuantity}
-              decreaseQuantity={decreaseQuantity}
-              removeFromCart={removeFromCart}
-            />
+            <PrivateRoute>
+              <Cart
+                cart={cart}
+                increaseQuantity={increaseQuantity}
+                decreaseQuantity={decreaseQuantity}
+                removeFromCart={removeFromCart}
+              />
+            </PrivateRoute>
           }
         />
         <Route
           path="/products/:productId"
           element={<ProductDetails />}
         />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+        path="/register"
+        element={
+          <GuestRoute>
+            <Register />
+          </GuestRoute>
+        }
+      />
+
+      <Route
+        path="/login"
+        element={
+          <GuestRoute>
+            <Login />
+          </GuestRoute>
+        }
+      />
       </Routes>       
       
       <Footer />      
