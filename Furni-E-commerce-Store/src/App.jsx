@@ -19,6 +19,7 @@ import {
   PrivateRoute,
   GuestRoute,
 } from "./components/route-guards/RouteGuards";
+import ProductCreate from "./pages/product-create/ProductCreate";
 
 
 export default function App() {
@@ -129,6 +130,15 @@ export default function App() {
           <GuestRoute>
             <Login />
           </GuestRoute>
+        }
+      />
+
+      <Route
+        path="/products/create"
+        element={
+          <PrivateRoute>
+            <ProductCreate />
+          </PrivateRoute>
         }
       />
       </Routes>       
