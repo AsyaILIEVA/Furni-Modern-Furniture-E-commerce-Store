@@ -1,54 +1,91 @@
-
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../../lib/supabase";
+import { useAuth } from "../../context/AuthContext";
 
 export default function ProductDetails() {
   const { productId } = useParams();
+  const { user, loading: authLoading } = useAuth();
+  const navigate = useNavigate();
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState("");
+  const [actionError, setActionError] = useState("");
 
   useEffect(() => {
     async function getProduct() {
       setLoading(true);
       setError("");
 
-      const { data, error } = await supabase
-        .from("products")
-        .select("*")
-        .eq("id", productId)
-        .maybeSingle();
+      try {
+        const { data, error } = await supabase
+          .from("products")
+          .select("*")
+          .eq("id", productId)
+          .maybeSingle();
 
-      if (error) {
-        setError("Could not load this product.");
-      } else if (!data) {
-        setError("Product not found.");
-      } else {
-        setProduct(data);
+        if (error) throw error;
+
+        if (!data) {
+          setError("Product not found.");
+        } else {
+          setProduct(data);
+        }
+      } catch (err) {
+        setError(err.message || "Could not load this product.");
+      } finally {
+        setLoading(false);
       }
-
-      setLoading(false);
     }
 
     getProduct();
   }, [productId]);
 
-  if (loading) {
+  async function handleDelete() {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this product?"
+    );
+
+    if (!confirmed) return;
+
+    setDeleting(true);
+    setActionError("");
+
+    try {
+      const { error } = await supabase
+        .from("products")
+        .delete()
+        .eq("id", product.id)
+        .eq("owner_id", user.id);
+
+      if (error) throw error;
+
+      navigate("/shop");
+    } catch (err) {
+      setActionError(err.message || "Could not delete this product.");
+    } finally {
+      setDeleting(false);
+    }
+  }
+
+  if (loading || authLoading) {
     return <div className="container py-5">Loading product...</div>;
   }
 
-  if (error) {
+  if (error || !product) {
     return (
       <div className="container py-5">
-        <p>{error}</p>
+        <p>{error || "Product not found."}</p>
         <Link to="/shop" className="btn btn-primary">
           Back to catalog
         </Link>
       </div>
     );
   }
+
+  const isOwner = user && product.owner_id === user.id;
 
   return (
     <div className="untree_co-section">
@@ -71,11 +108,35 @@ export default function ProductDetails() {
 
             <p>Category: {product.category || "Uncategorized"}</p>
 
-            <p>
-              {product.description || "No description available."}
-            </p>
+            <p>{product.description || "No description available."}</p>
 
-            <Link to="/shop" className="btn btn-primary">
+            {actionError && (
+              <p className="text-danger" role="alert">
+                {actionError}
+              </p>
+            )}
+
+            {isOwner && (
+              <div className="mb-3">
+                <Link
+                  to={`/products/${product.id}/edit`}
+                  className="btn btn-primary me-2"
+                >
+                  Edit Product
+                </Link>
+
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={handleDelete}
+                  disabled={deleting}
+                >
+                  {deleting ? "Deleting..." : "Delete Product"}
+                </button>
+              </div>
+            )}
+
+            <Link to="/shop" className="btn btn-outline-secondary">
               Back to catalog
             </Link>
           </div>
@@ -84,3 +145,4 @@ export default function ProductDetails() {
     </div>
   );
 }
+
