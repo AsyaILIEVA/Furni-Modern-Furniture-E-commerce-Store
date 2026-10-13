@@ -21,6 +21,7 @@ import {
 } from "./components/route-guards/RouteGuards";
 import ProductCreate from "./pages/product-create/ProductCreate";
 import ProductEdit from "./pages/product-edit/ProductEdit";
+import CategoryProducts from "./pages/category-products/CategoryProducts";
 
 
 export default function App() {
@@ -150,7 +151,12 @@ export default function App() {
               <ProductEdit />
             </PrivateRoute>
           }
-/>
+      />
+
+      <Route
+        path="/shop/category/:category"
+        element={<CategoryProducts />}
+      />
       </Routes>       
       
       <Footer />      

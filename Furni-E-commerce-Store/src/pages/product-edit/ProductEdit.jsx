@@ -173,16 +173,22 @@ export default function ProductEdit() {
 
               <div className="mb-3">
                 <label htmlFor="category" className="form-label">
-                  Category
+                    Category
                 </label>
-                <input
-                  id="category"
-                  className="form-control"
-                  value={category}
-                  onChange={(event) => setCategory(event.target.value)}
-                  required
-                />
-              </div>
+
+                <select
+                    id="category"
+                    className="form-control"
+                    value={category}
+                    onChange={(event) => setCategory(event.target.value)}
+                    required
+                >
+                    <option value="">Select a category</option>
+                    <option value="Chair">Chairs</option>
+                    <option value="Table">Tables</option>
+                    <option value="Sofa">Sofas</option>
+                </select>
+                </div>
 
               <div className="mb-3">
                 <label htmlFor="description" className="form-label">

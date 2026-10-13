@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 import ProductList from "../../components/product-list/ProductList";
 
 export default function Shop({ addToCart }) {
@@ -15,6 +15,17 @@ export default function Shop({ addToCart }) {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="container pt-5">
+        <h2 className="mb-3">Shop by Category</h2>
+
+        <Link
+          to="/shop/category/Chair"
+          className="btn btn-outline-secondary"
+        >
+          Chairs
+        </Link>
       </div>
 
       <div className="untree_co-section product-section before-footer-section">
