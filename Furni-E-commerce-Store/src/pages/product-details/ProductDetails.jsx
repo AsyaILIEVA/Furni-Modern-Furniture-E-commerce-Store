@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../../lib/supabase";
 import { useAuth } from "../../context/AuthContext";
+import ProductComments from "../../components/product-comments/ProductComments";
 
 export default function ProductDetails() {
   const { productId } = useParams();
@@ -141,6 +142,8 @@ export default function ProductDetails() {
             </Link>
           </div>
         </div>
+
+        <ProductComments productId={product.id} />
       </div>
     </div>
   );
