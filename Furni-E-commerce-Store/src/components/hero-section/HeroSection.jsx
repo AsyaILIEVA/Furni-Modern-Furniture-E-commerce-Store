@@ -2,8 +2,8 @@
 import { Link } from "react-router-dom";
 
 export default function HeroSection({
-  title = "Modern Interior Design Studio",
-  description = "Discover stylish furniture designed to make your home feel comfortable and beautiful.",
+  title = "Beautiful Furniture for Everyday Living",
+  description = "Discover Furni's collection of thoughtfully designed furniture. Bring comfort, style, and personality into every corner of your home.",
 }) {
   return (
     <div className="hero">
@@ -21,7 +21,7 @@ export default function HeroSection({
                 </Link>
 
                 <Link to="/about" className="btn btn-white-outline">
-                  Explore
+                  Our Story
                 </Link>
               </p>
             </div>

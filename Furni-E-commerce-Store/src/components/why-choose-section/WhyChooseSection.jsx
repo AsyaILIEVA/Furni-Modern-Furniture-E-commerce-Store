@@ -4,11 +4,12 @@ export default function WhyChooseSection() {
       <div className="container">
         <div className="row justify-content-between">
           <div className="col-lg-6">
-            <h2 className="section-title">Why Choose Us</h2>
+            <h2 className="section-title">Why Choose Furni?</h2>
 
             <p>
-              Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet
-              velit. Aliquam vulputate velit imperdiet dolor tempor tristique.
+              We believe great furniture should combine comfort,
+              thoughtful design, and everyday practicality. Explore
+              pieces that help make your space feel more like home.
             </p>
 
             <div className="row my-5">
@@ -22,11 +23,11 @@ export default function WhyChooseSection() {
                     />
                   </div>
 
-                  <h3>Fast &amp; Free Shipping</h3>
+                  <h3>Convenient Delivery</h3>
 
                   <p>
-                    Donec vitae odio quis nisl dapibus malesuada. Nullam ac
-                    aliquet velit. Aliquam vulputate.
+                    Find your favourite pieces and enjoy a simple,
+                    convenient shopping experience from home.
                   </p>
                 </div>
               </div>
@@ -41,11 +42,11 @@ export default function WhyChooseSection() {
                     />
                   </div>
 
-                  <h3>Easy to Shop</h3>
+                  <h3>Easy to Explore</h3>
 
                   <p>
-                    Donec vitae odio quis nisl dapibus malesuada. Nullam ac
-                    aliquet velit. Aliquam vulputate.
+                    Browse our furniture collection and view product
+                    details to help you choose the right piece.
                   </p>
                 </div>
               </div>
@@ -60,11 +61,11 @@ export default function WhyChooseSection() {
                     />
                   </div>
 
-                  <h3>24/7 Support</h3>
+                  <h3>Here to Help</h3>
 
                   <p>
-                    Donec vitae odio quis nisl dapibus malesuada. Nullam ac
-                    aliquet velit. Aliquam vulputate.
+                    Have a question? Get in touch with us through
+                    our contact page for assistance.
                   </p>
                 </div>
               </div>
@@ -79,11 +80,11 @@ export default function WhyChooseSection() {
                     />
                   </div>
 
-                  <h3>Hassle Free Returns</h3>
+                  <h3>Shop with Confidence</h3>
 
                   <p>
-                    Donec vitae odio quis nisl dapibus malesuada. Nullam ac
-                    aliquet velit. Aliquam vulputate.
+                    Review product descriptions and prices before
+                    deciding which furniture suits your space.
                   </p>
                 </div>
               </div>
@@ -94,7 +95,7 @@ export default function WhyChooseSection() {
             <div className="img-wrap">
               <img
                 src="/assets/images/why-choose-us-img.jpg"
-                alt="Modern furniture in an interior"
+                alt="Modern furniture in a thoughtfully designed interior"
                 className="img-fluid"
               />
             </div>
