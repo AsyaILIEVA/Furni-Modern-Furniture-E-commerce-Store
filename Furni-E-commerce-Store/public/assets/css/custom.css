@@ -1,0 +1,78 @@
+/* Furni — Custom Design Enhancements */
+
+/* General readability */
+body {
+  line-height: 1.65;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+/* Modern buttons */
+.btn {
+  border-radius: 30px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Cleaner form fields */
+.form-control,
+.form-select {
+  border-radius: 10px;
+  border: 1px solid #d5ddd8;
+  padding: 12px 15px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #3b5d50;
+  box-shadow: 0 0 0 4px rgba(59, 93, 80, 0.12);
+}
+
+/* Keyboard accessibility */
+.btn:focus-visible,
+a:focus-visible {
+  outline: 3px solid #f9bf29;
+  outline-offset: 3px;
+}
+
+/* Subtle product image animation */
+.product-item .product-thumbnail {
+  transition: transform 0.3s ease;
+}
+
+.product-item:hover .product-thumbnail {
+  transform: translateY(-5px);
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
