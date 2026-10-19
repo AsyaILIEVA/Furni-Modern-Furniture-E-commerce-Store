@@ -25,13 +25,18 @@ export default function ProductCreate() {
       return;
     }
 
-    if (!name.trim() || !imageUrl.trim() || !category.trim() || !description.trim()) {
-      setError("Please fill in all fields.");
+    if (
+      !name.trim() ||
+      !imageUrl.trim() ||
+      !category.trim() ||
+      !description.trim()
+    ) {
+      setError("Please complete all fields before continuing.");
       return;
     }
 
     if (!Number.isFinite(Number(price)) || Number(price) <= 0) {
-      setError("Price must be greater than zero.");
+      setError("Please enter a valid price greater than zero.");
       return;
     }
 
@@ -61,29 +66,43 @@ export default function ProductCreate() {
     <div className="untree_co-section">
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-md-8 col-lg-6">
-            <h1 className="mb-4">Add a Product</h1>
+          <div className="col-md-8 col-lg-7">
+            <div className="mb-4">
+              <h1 className="section-title mb-2">Add New Furniture</h1>
+              <p>
+                Share a furniture piece with the Furni collection.
+                Complete the details below to create your listing.
+              </p>
+            </div>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="border rounded-3 p-4 bg-white">
               <div className="mb-3">
-                <label htmlFor="name" className="form-label">Product name</label>
+                <label htmlFor="name" className="form-label fw-semibold">
+                  Product Name
+                </label>
                 <input
                   id="name"
+                  type="text"
                   className="form-control"
+                  placeholder="e.g. Modern Lounge Chair"
                   value={name}
                   onChange={(event) => setName(event.target.value)}
+                  maxLength={100}
                   required
                 />
               </div>
 
               <div className="mb-3">
-                <label htmlFor="price" className="form-label">Price</label>
+                <label htmlFor="price" className="form-label fw-semibold">
+                  Price ($)
+                </label>
                 <input
                   id="price"
                   type="number"
                   min="0.01"
                   step="0.01"
                   className="form-control"
+                  placeholder="e.g. 79.99"
                   value={price}
                   onChange={(event) => setPrice(event.target.value)}
                   required
@@ -91,57 +110,75 @@ export default function ProductCreate() {
               </div>
 
               <div className="mb-3">
-                <label htmlFor="imageUrl" className="form-label">Image URL or asset path</label>
+                <label htmlFor="imageUrl" className="form-label fw-semibold">
+                  Product Image
+                </label>
                 <input
                   id="imageUrl"
+                  type="text"
                   className="form-control"
                   placeholder="/assets/images/product-1.png"
                   value={imageUrl}
                   onChange={(event) => setImageUrl(event.target.value)}
                   required
                 />
+                <small className="text-muted">
+                  Enter an image URL or an existing asset path.
+                </small>
               </div>
 
               <div className="mb-3">
-                <label htmlFor="category" className="form-label">
-                    Category
+                <label htmlFor="category" className="form-label fw-semibold">
+                  Category
                 </label>
-
                 <select
-                    id="category"
-                    className="form-control"
-                    value={category}
-                    onChange={(event) => setCategory(event.target.value)}
-                    required
+                  id="category"
+                  className="form-select"
+                  value={category}
+                  onChange={(event) => setCategory(event.target.value)}
+                  required
                 >
-                    <option value="">Select a category</option>
-                    <option value="Chair">Chairs</option>
-                    <option value="Table">Tables</option>
-                    <option value="Sofa">Sofas</option>
+                  <option value="">Select a category</option>
+                  <option value="Chair">Chairs</option>
+                  <option value="Table">Tables</option>
+                  <option value="Sofa">Sofas</option>
                 </select>
-                </div>
+              </div>
 
-              <div className="mb-3">
-                <label htmlFor="description" className="form-label">Description</label>
+              <div className="mb-4">
+                <label htmlFor="description" className="form-label fw-semibold">
+                  Description
+                </label>
                 <textarea
                   id="description"
                   className="form-control"
-                  rows="4"
+                  rows="5"
+                  placeholder="Describe the design, features, and style of your furniture..."
                   value={description}
                   onChange={(event) => setDescription(event.target.value)}
                   required
                 />
               </div>
 
-              {error && <p className="text-danger" role="alert">{error}</p>}
+              {error && (
+                <div className="alert alert-danger" role="alert">
+                  {error}
+                </div>
+              )}
 
-              <button type="submit" className="btn btn-primary me-2" disabled={loading}>
-                {loading ? "Creating..." : "Create Product"}
-              </button>
+              <div className="d-flex flex-wrap gap-2">
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  disabled={loading}
+                >
+                  {loading ? "Creating Product..." : "Create Product"}
+                </button>
 
-              <Link to="/shop" className="btn btn-outline-secondary">
-                Cancel
-              </Link>
+                <Link to="/shop" className="btn btn-outline-secondary">
+                  Cancel
+                </Link>
+              </div>
             </form>
           </div>
         </div>

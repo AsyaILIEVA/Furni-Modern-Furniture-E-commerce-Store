@@ -1,4 +1,3 @@
-
 import HeroSection from "../../components/hero-section/HeroSection";
 import WhyChooseSection from "../../components/why-choose-section/WhyChooseSection";
 import WeHelpSection from "../../components/we-help-section/WeHelpSection";
@@ -9,8 +8,8 @@ export default function About() {
   return (
     <>
       <HeroSection
-        title="About Us"
-        description="We help you create a comfortable, beautiful home with thoughtfully designed furniture."
+        title="The Story Behind Furni"
+        description="At Furni, we believe a welcoming home begins with thoughtful choices. Explore our approach to furniture, comfort, and modern living."
       />
 
       <WhyChooseSection />

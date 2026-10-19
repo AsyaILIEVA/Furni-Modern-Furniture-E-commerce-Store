@@ -17,10 +17,14 @@ export default function ProductEdit() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+  const [loadError, setLoadError] = useState("");
 
   useEffect(() => {
+    let active = true;
+
     async function getProduct() {
       setLoading(true);
+      setLoadError("");
       setError("");
 
       try {
@@ -36,43 +40,56 @@ export default function ProductEdit() {
           throw new Error("Product not found.");
         }
 
-        if (data.owner_id !== user?.id) {
+        if (data.owner_id !== user.id) {
           throw new Error("You can only edit your own products.");
         }
 
-        setName(data.name);
-        setPrice(String(data.price));
-        setImageUrl(data.imageUrl);
-        setCategory(data.category || "");
-        setDescription(data.description || "");
+        if (active) {
+          setName(data.name);
+          setPrice(String(data.price));
+          setImageUrl(data.imageUrl);
+          setCategory(data.category || "");
+          setDescription(data.description || "");
+        }
       } catch (err) {
-        setError(err.message || "Could not load product.");
+        if (active) {
+          setLoadError(err.message || "Could not load product.");
+        }
       } finally {
-        setLoading(false);
+        if (active) setLoading(false);
       }
     }
 
-    if (!authLoading) {
-      if (user) {
-        getProduct();
-      } else {
-        setLoading(false);
-      }
+    if (!authLoading && user) {
+      getProduct();
     }
+
+    return () => {
+      active = false;
+    };
   }, [productId, user, authLoading]);
 
   async function handleSubmit(event) {
     event.preventDefault();
     setError("");
 
-    if (!name.trim() || !imageUrl.trim() ||
-        !category.trim() || !description.trim()) {
-      setError("Please fill in all fields.");
+    if (!user) {
+      setError("You must be logged in to edit a product.");
+      return;
+    }
+
+    if (
+      !name.trim() ||
+      !imageUrl.trim() ||
+      !category.trim() ||
+      !description.trim()
+    ) {
+      setError("Please complete all fields before continuing.");
       return;
     }
 
     if (!Number.isFinite(Number(price)) || Number(price) <= 0) {
-      setError("Price must be greater than zero.");
+      setError("Please enter a valid price greater than zero.");
       return;
     }
 
@@ -107,15 +124,22 @@ export default function ProductEdit() {
   }
 
   if (authLoading || loading) {
-    return <div className="container py-5">Loading product...</div>;
+    return (
+      <div className="container py-5" role="status">
+        Loading product...
+      </div>
+    );
   }
 
-  if (error && !name && !price) {
+  if (loadError) {
     return (
       <div className="container py-5">
-        <p className="text-danger" role="alert">{error}</p>
+        <p className="text-danger" role="alert">
+          {loadError}
+        </p>
+
         <Link to="/shop" className="btn btn-primary">
-          Back to catalog
+          Back to Catalog
         </Link>
       </div>
     );
@@ -125,26 +149,37 @@ export default function ProductEdit() {
     <div className="untree_co-section">
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-md-8 col-lg-6">
-            <h1 className="mb-4">Edit Product</h1>
+          <div className="col-md-8 col-lg-7">
+            <div className="mb-4">
+              <h1 className="section-title mb-2">Edit Furniture Details</h1>
+              <p>
+                Update your product information below. Your changes
+                will appear in the Furni collection after saving.
+              </p>
+            </div>
 
-            <form onSubmit={handleSubmit}>
+            <form
+              onSubmit={handleSubmit}
+              className="border rounded-3 p-4 bg-white"
+            >
               <div className="mb-3">
-                <label htmlFor="name" className="form-label">
-                  Product name
+                <label htmlFor="name" className="form-label fw-semibold">
+                  Product Name
                 </label>
                 <input
                   id="name"
+                  type="text"
                   className="form-control"
                   value={name}
                   onChange={(event) => setName(event.target.value)}
+                  maxLength={100}
                   required
                 />
               </div>
 
               <div className="mb-3">
-                <label htmlFor="price" className="form-label">
-                  Price
+                <label htmlFor="price" className="form-label fw-semibold">
+                  Price ($)
                 </label>
                 <input
                   id="price"
@@ -159,45 +194,51 @@ export default function ProductEdit() {
               </div>
 
               <div className="mb-3">
-                <label htmlFor="imageUrl" className="form-label">
-                  Image URL or asset path
+                <label htmlFor="imageUrl" className="form-label fw-semibold">
+                  Product Image
                 </label>
                 <input
                   id="imageUrl"
+                  type="text"
                   className="form-control"
                   value={imageUrl}
                   onChange={(event) => setImageUrl(event.target.value)}
                   required
                 />
+                <small className="text-muted">
+                  Enter an image URL or an existing asset path.
+                </small>
               </div>
 
               <div className="mb-3">
-                <label htmlFor="category" className="form-label">
-                    Category
+                <label htmlFor="category" className="form-label fw-semibold">
+                  Category
                 </label>
-
                 <select
-                    id="category"
-                    className="form-control"
-                    value={category}
-                    onChange={(event) => setCategory(event.target.value)}
-                    required
+                  id="category"
+                  className="form-select"
+                  value={category}
+                  onChange={(event) => setCategory(event.target.value)}
+                  required
                 >
-                    <option value="">Select a category</option>
-                    <option value="Chair">Chairs</option>
-                    <option value="Table">Tables</option>
-                    <option value="Sofa">Sofas</option>
+                  <option value="">Select a category</option>
+                  <option value="Chair">Chairs</option>
+                  <option value="Table">Tables</option>
+                  <option value="Sofa">Sofas</option>
                 </select>
-                </div>
+              </div>
 
-              <div className="mb-3">
-                <label htmlFor="description" className="form-label">
+              <div className="mb-4">
+                <label
+                  htmlFor="description"
+                  className="form-label fw-semibold"
+                >
                   Description
                 </label>
                 <textarea
                   id="description"
                   className="form-control"
-                  rows="4"
+                  rows="5"
                   value={description}
                   onChange={(event) => setDescription(event.target.value)}
                   required
@@ -205,23 +246,27 @@ export default function ProductEdit() {
               </div>
 
               {error && (
-                <p className="text-danger" role="alert">{error}</p>
+                <div className="alert alert-danger" role="alert">
+                  {error}
+                </div>
               )}
 
-              <button
-                type="submit"
-                className="btn btn-primary me-2"
-                disabled={saving}
-              >
-                {saving ? "Saving..." : "Save Changes"}
-              </button>
+              <div className="d-flex flex-wrap gap-2">
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  disabled={saving}
+                >
+                  {saving ? "Saving Changes..." : "Save Changes"}
+                </button>
 
-              <Link
-                to={`/products/${productId}`}
-                className="btn btn-outline-secondary"
-              >
-                Cancel
-              </Link>
+                <Link
+                  to={`/products/${productId}`}
+                  className="btn btn-outline-secondary"
+                >
+                  Cancel
+                </Link>
+              </div>
             </form>
           </div>
         </div>

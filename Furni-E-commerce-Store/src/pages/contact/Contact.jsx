@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import HeroSection from "../../components/hero-section/HeroSection";
 
@@ -10,6 +9,8 @@ export default function Contact() {
     message: "",
   });
 
+  const [submitted, setSubmitted] = useState(false);
+
   function handleChange(event) {
     const { name, value } = event.target;
 
@@ -17,12 +18,14 @@ export default function Contact() {
       ...previousData,
       [name]: value,
     }));
+
+    setSubmitted(false);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    alert(`Thank you, ${formData.firstName}! Your message has been entered.`);
+    setSubmitted(true);
 
     setFormData({
       firstName: "",
@@ -35,12 +38,30 @@ export default function Contact() {
   return (
     <>
       <HeroSection
-        title="Contact Us"
-        description="Have a question? We'd love to hear from you."
+        title="Get in Touch"
+        description="Have a question about Furni or our furniture collection? Use the form below to write your message."
       />
 
       <div className="untree_co-section">
         <div className="container">
+          <div className="row mb-4">
+            <div className="col-lg-8">
+              <h2 className="section-title">Send Us a Message</h2>
+              <p>
+                Complete the form below with your contact details
+                and message.
+              </p>
+            </div>
+          </div>
+
+          {submitted && (
+            <div className="alert alert-info" role="status">
+              Your form was submitted in this session, but the message
+              has not been sent or saved. Contact form delivery has
+              not been connected yet.
+            </div>
+          )}
+
           <form onSubmit={handleSubmit}>
             <div className="row">
               <div className="col-md-6 mb-3">
@@ -50,6 +71,7 @@ export default function Contact() {
                   className="form-control"
                   type="text"
                   name="firstName"
+                  autoComplete="given-name"
                   value={formData.firstName}
                   onChange={handleChange}
                   required
@@ -63,6 +85,7 @@ export default function Contact() {
                   className="form-control"
                   type="text"
                   name="lastName"
+                  autoComplete="family-name"
                   value={formData.lastName}
                   onChange={handleChange}
                   required
@@ -76,6 +99,7 @@ export default function Contact() {
                   className="form-control"
                   type="email"
                   name="email"
+                  autoComplete="email"
                   value={formData.email}
                   onChange={handleChange}
                   required
@@ -83,7 +107,7 @@ export default function Contact() {
               </div>
 
               <div className="col-md-12 mb-3">
-                <label htmlFor="message">Message</label>
+                <label htmlFor="message">How can we help?</label>
                 <textarea
                   id="message"
                   className="form-control"
@@ -97,7 +121,7 @@ export default function Contact() {
 
               <div className="col-md-12">
                 <button className="btn btn-primary" type="submit">
-                  Send Message
+                  Submit Form
                 </button>
               </div>
             </div>

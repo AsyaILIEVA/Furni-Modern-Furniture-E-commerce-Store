@@ -16,9 +16,12 @@ export default function ProductDetails() {
   const [actionError, setActionError] = useState("");
 
   useEffect(() => {
+    let active = true;
+
     async function getProduct() {
       setLoading(true);
       setError("");
+      setProduct(null);
 
       try {
         const { data, error } = await supabase
@@ -29,24 +32,34 @@ export default function ProductDetails() {
 
         if (error) throw error;
 
-        if (!data) {
-          setError("Product not found.");
-        } else {
-          setProduct(data);
+        if (active) {
+          if (!data) {
+            setError("This product could not be found.");
+          } else {
+            setProduct(data);
+          }
         }
       } catch (err) {
-        setError(err.message || "Could not load this product.");
+        if (active) {
+          setError(err.message || "Could not load this product.");
+        }
       } finally {
-        setLoading(false);
+        if (active) setLoading(false);
       }
     }
 
     getProduct();
+
+    return () => {
+      active = false;
+    };
   }, [productId]);
 
   async function handleDelete() {
+    if (!isOwner || deleting) return;
+
     const confirmed = window.confirm(
-      "Are you sure you want to delete this product?"
+      "Are you sure you want to delete this product? This action cannot be undone."
     );
 
     if (!confirmed) return;
@@ -55,13 +68,18 @@ export default function ProductDetails() {
     setActionError("");
 
     try {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from("products")
         .delete()
         .eq("id", product.id)
-        .eq("owner_id", user.id);
+        .eq("owner_id", user.id)
+        .select("id");
 
       if (error) throw error;
+
+      if (!data || data.length === 0) {
+        throw new Error("Product could not be deleted.");
+      }
 
       navigate("/shop");
     } catch (err) {
@@ -72,15 +90,20 @@ export default function ProductDetails() {
   }
 
   if (loading || authLoading) {
-    return <div className="container py-5">Loading product...</div>;
+    return (
+      <div className="container py-5" role="status">
+        Loading product...
+      </div>
+    );
   }
 
   if (error || !product) {
     return (
       <div className="container py-5">
-        <p>{error || "Product not found."}</p>
+        <p role="alert">{error || "Product not found."}</p>
+
         <Link to="/shop" className="btn btn-primary">
-          Back to catalog
+          Back to Catalog
         </Link>
       </div>
     );
@@ -91,25 +114,30 @@ export default function ProductDetails() {
   return (
     <div className="untree_co-section">
       <div className="container">
-        <div className="row align-items-center">
+        <div className="row align-items-center g-5">
           <div className="col-md-6">
             <img
               src={product.imageUrl}
               alt={product.name}
-              className="img-fluid"
+              className="img-fluid rounded-3"
             />
           </div>
 
           <div className="col-md-6">
-            <h1>{product.name}</h1>
+            <h1 className="mb-3">{product.name}</h1>
 
-            <p className="product-price">
+            <p className="product-price fs-4 fw-bold">
               ${Number(product.price).toFixed(2)}
             </p>
 
-            <p>Category: {product.category || "Uncategorized"}</p>
+            <p className="mb-3">
+              <strong>Category:</strong>{" "}
+              {product.category || "Uncategorized"}
+            </p>
 
-            <p>{product.description || "No description available."}</p>
+            <p className="mb-4">
+              {product.description || "No description available."}
+            </p>
 
             {actionError && (
               <p className="text-danger" role="alert">
@@ -118,17 +146,17 @@ export default function ProductDetails() {
             )}
 
             {isOwner && (
-              <div className="mb-3">
+              <div className="d-flex flex-wrap gap-2 mb-4">
                 <Link
                   to={`/products/${product.id}/edit`}
-                  className="btn btn-primary me-2"
+                  className="btn btn-primary"
                 >
                   Edit Product
                 </Link>
 
                 <button
                   type="button"
-                  className="btn btn-danger"
+                  className="btn btn-outline-danger"
                   onClick={handleDelete}
                   disabled={deleting}
                 >
@@ -138,7 +166,7 @@ export default function ProductDetails() {
             )}
 
             <Link to="/shop" className="btn btn-outline-secondary">
-              Back to catalog
+              Back to Catalog
             </Link>
           </div>
         </div>
@@ -148,4 +176,3 @@ export default function ProductDetails() {
     </div>
   );
 }
-
