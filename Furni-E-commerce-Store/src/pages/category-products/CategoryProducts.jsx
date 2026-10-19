@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { supabase } from "../../lib/supabase";
 import ProductCard from "../../components/product-card/ProductCard";
 
-export default function CategoryProducts() {
+export default function CategoryProducts( { addToCart } ) {
   const { category } = useParams();
 
   const [products, setProducts] = useState([]);
@@ -58,7 +58,11 @@ export default function CategoryProducts() {
         {!loading && !error && products.length > 0 && (
           <div className="row">
             {products.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard 
+                key={product.id} 
+                product={product} 
+                onAddToCart={() => addToCart(product)}
+                />
             ))}
           </div>
         )}
