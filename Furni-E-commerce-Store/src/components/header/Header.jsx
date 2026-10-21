@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { supabase } from "../../lib/supabase";
 import { useAuth } from "../../context/AuthContext";
 
 export default function Header({ cartCount }) {
-
   const { user, loading } = useAuth();
   const navigate = useNavigate();
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   async function handleLogout() {
     const { error } = await supabase.auth.signOut();
@@ -16,7 +16,12 @@ export default function Header({ cartCount }) {
       return;
     }
 
+    setUserMenuOpen(false);
     navigate("/");
+  }
+
+  function closeMenu() {
+    setUserMenuOpen(false);
   }
 
   return (
@@ -25,7 +30,7 @@ export default function Header({ cartCount }) {
       aria-label="Furni navigation bar"
     >
       <div className="container">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" to="/" onClick={closeMenu}>
           Furni<span>.</span>
         </Link>
 
@@ -43,83 +48,99 @@ export default function Header({ cartCount }) {
 
         <div className="collapse navbar-collapse" id="navbarsFurni">
           <ul className="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-            <li className="nav-item active">
-              <Link className="nav-link" to="/">
-                Home
-              </Link>
-            </li>
-
-            <li>
-              <Link className="nav-link" to="/shop">
-                Shop
-              </Link>
-            </li>
-
-            <li>
-              <Link className="nav-link" to="/about">
-                About us
-              </Link>
-            </li>
-
-            <li>
-              <Link className="nav-link" to="/services">
-                Services
-              </Link>
-            </li>
-
-            <li>
-              <Link className="nav-link" to="/blog">
-                Blog
-              </Link>
-            </li>
-
-            <li>
-              <Link className="nav-link" to="/contact">
-                Contact us
-              </Link>
-            </li>
-
-            {!loading && !user && (
-              <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/login">Login</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/register">Register</Link>
-                </li>
-              </>
-            )}
-
-            {!loading && user && (
-              <li className="nav-item">
-                <button
-                type="button"
-                className="nav-link border-0 bg-transparent"
-                style={{ color: "inherit", font: "inherit", cursor: "pointer" }}
-                onClick={handleLogout}
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                to="/"
+                end
+                onClick={closeMenu}
               >
-                Logout
-              </button>
-              </li>
-            )}
+                Home
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                to="/shop"
+                onClick={closeMenu}
+              >
+                Shop
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                to="/blog"
+                onClick={closeMenu}
+              >
+                Inspiration
+              </NavLink>
+            </li>
           </ul>
 
-          <ul className="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-            <li>
-              <Link className="nav-link" to="#">
-                <img
-                  src="/assets/images/user.svg"
-                  alt="User account"
-                />
-              </Link>
+          <ul className="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-md-4">
+            <li className="nav-item user-menu-wrapper">
+              <button
+                type="button"
+                className="nav-link user-menu-button"
+                aria-label="Open user menu"
+                aria-expanded={userMenuOpen}
+                onClick={() => setUserMenuOpen((open) => !open)}
+              >
+                <img src="/assets/images/user.svg" alt="" />
+              </button>
+
+              {userMenuOpen && (
+                <div className="user-dropdown">
+                  {!loading && !user && (
+                    <>
+                      <Link
+                        to="/login"
+                        className="user-dropdown-link"
+                        onClick={closeMenu}
+                      >
+                        Login
+                      </Link>
+                      <Link
+                        to="/register"
+                        className="user-dropdown-link"
+                        onClick={closeMenu}
+                      >
+                        Register
+                      </Link>
+                    </>
+                  )}
+
+                  {!loading && user && (
+                    <>
+                      <Link to="/products/create" 
+                      className="user-dropdown-link" onClick={closeMenu}>
+                        Add Product
+                      </Link>
+                      <button
+                        type="button"
+                        className="user-dropdown-link user-dropdown-action"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </button>
+                    </>
+                  )}
+
+                  {loading && (
+                    <span className="user-dropdown-link">
+                      Loading...
+                    </span>
+                  )}
+                </div>
+              )}
             </li>
 
-            <li>
-              <Link className="nav-link" to="/cart">
-                <img
-                  src="/assets/images/cart.svg"
-                  alt="Shopping cart"
-                />
+            <li className="nav-item">
+              <Link className="nav-link cart-link" to="/cart">
+                <img src="/assets/images/cart.svg" alt="Shopping cart" />
                 <span className="ms-1">{cartCount}</span>
               </Link>
             </li>
