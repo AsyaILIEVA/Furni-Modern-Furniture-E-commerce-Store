@@ -166,7 +166,7 @@ The cart displays an empty-cart message and a link back to the shop. Category pa
 
 The deployed application can be accessed using the following link:
 
-**Live Demo:** [Insert your Vercel deployment URL here]
+**Live Demo:** [https://furni-project.vercel.app]
 
 ### Run Locally
 
