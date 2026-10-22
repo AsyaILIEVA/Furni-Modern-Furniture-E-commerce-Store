@@ -168,6 +168,8 @@ The deployed application can be accessed using the following link:
 
 **Live Demo:** [https://furni-project.vercel.app]
 
+GitHub Repository URL: [https://github.com/AsyaILIEVA/Furni-Modern-Furniture-E-commerce-Store]
+
 ### Run Locally
 
 From the `Furni-E-commerce-Store` application directory, install the dependencies:
