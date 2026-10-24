@@ -166,7 +166,7 @@ The cart displays an empty-cart message and a link back to the shop. Category pa
 
 The deployed application can be accessed using the following link:
 
-**Live Demo:** [https://furni-project.vercel.app]
+**Live Demo:** [https://furni-modern-furniture-e-commerce-store-l42929753-asya-ilieva.vercel.app/]
 
 GitHub Repository URL: [https://github.com/AsyaILIEVA/Furni-Modern-Furniture-E-commerce-Store]
 
