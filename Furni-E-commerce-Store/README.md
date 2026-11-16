@@ -13,7 +13,7 @@
 - [+] Rename lower case attribute names to camelCase props
 - [+] Add index.html header links and scripts
 - [+] Extract components by section
-- [+] Extract Service Card as reusable component
+- [+] Extract Product Card as reusable component
 
 
 ## 1. Project Overview
@@ -130,7 +130,7 @@ Submission errors are displayed in the corresponding forms, and buttons use load
 - `useEffect` fetches sessions, products, product details, category results, and comments when components mount or relevant parameters change.
 - `useContext`, wrapped by the custom `useAuth()` hook, provides shared authentication state.
 - `useParams` reads product and category parameters; `useNavigate` handles programmatic redirects.
-- **Lifecycle example:** `AuthProvider` checks the session on mount and subscribes to auth changes; on unmount its effect cleanup calls `subscription.unsubscribe()`. Comment fetching also uses an `active` flag in effect cleanup to avoid updating state after its effect becomes obsolete.
+
 
 ### Context API
 `AuthContext` provides `{ user, loading }`. Route guards, the header, product management screens, and product comments consume this shared state. Cart state is instead owned by `App` and passed to relevant child components through props.
@@ -172,33 +172,14 @@ GitHub Repository URL: [https://github.com/AsyaILIEVA/Furni-Modern-Furniture-E-c
 
 ### Run Locally
 
-From the `Furni-E-commerce-Store` application directory, install the dependencies:
-
-```bash
-npm install
-```
-
-Create a `.env` file in the project root and configure your Supabase credentials:
-
-```env
-VITE_SUPABASE_URL=your_supabase_project_url
-VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
-```
-
-Replace the placeholder values with your actual Supabase project URL and publishable key. Do not commit your `.env` file to GitHub.
-
-The connected Supabase project must contain the required `products` and `comments` tables, along with appropriate authentication and database security policies.
+From the `Furni-E-commerce-Store` application directory, install the dependencies.
+Create a `.env` file in the project root and configure your Supabase credentials. The connected Supabase project must contain the required `products` and `comments` tables, along with appropriate authentication and database security policies.
 
 Start the development server:
-
-```bash
 npm run dev
-```
 
 Open the local URL displayed in the terminal, usually `http://localhost:5173`.
 
 ### Deployment
 
-The application is deployed on Vercel and uses Supabase for authentication and database operations. The deployed version uses environment variables configured in the Vercel project settings.
-
-No local `.env` file is required to access the live application.
+The application is deployed on Vercel and uses Supabase for authentication and database operations. The deployed version uses environment variables configured in the Vercel project settings. 
