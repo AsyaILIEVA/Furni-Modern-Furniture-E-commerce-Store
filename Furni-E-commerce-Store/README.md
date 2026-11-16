@@ -168,7 +168,7 @@ The deployed application can be accessed using the following link:
 
 **Live Demo:** [https://furni-modern-furniture-e-commerce-store-mtz6pzdz8-asya-ilieva.vercel.app/]
 
-GitHub Repository URL: [https://github.com/AsyaILIEVA/Furni-Modern-Furniture-E-commerce-Store]
+GitHub Repository URL: [https://github.com/AsyaILIEVA/Furni-Modern-Furniture-E-commerce-Store/tree/main/Furni-E-commerce-Store]
 
 ### Run Locally
 
